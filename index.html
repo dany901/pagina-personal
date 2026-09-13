@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Valer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121826;
+    --bg-soft:#161d2e;
+    --card:#1A2233;
+    --card-border:#2A3347;
+    --text:#ECEEF1;
+    --muted:#8B94A6;
+    --copper:#F2A65A;
+    --teal:#4FD1C5;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:72px 24px 96px;
+  }
+
+  header{
+    margin-bottom:64px;
+  }
+
+  h1{
+    font-family:'Lobster', cursive;
+    font-weight:400;
+    font-size:clamp(2.6rem, 7vw, 3.8rem);
+    margin:0 0 14px;
+    letter-spacing:0;
+  }
+
+  .subtitle{
+    color:var(--muted);
+    font-size:1.15rem;
+    max-width:44ch;
+    margin:0;
+  }
+
+  .contact-links{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 20px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.88rem;
+  }
+
+  .contact-links a{
+    color:var(--teal);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.15s ease;
+  }
+
+  .contact-links a:hover{
+    border-bottom-color:var(--teal);
+  }
+
+  .contact-links a:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  .contact-links .dot-sep{
+    color:var(--muted);
+  }
+
+  h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:0 0 20px;
+  }
+
+  section{
+    margin-bottom:64px;
+  }
+
+  .about-text{
+    color:var(--text);
+    font-size:1.02rem;
+    max-width:56ch;
+    margin:0 0 32px;
+  }
+
+  .courses{
+    display:grid;
+    gap:14px;
+  }
+
+  .course{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:10px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  .course .dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    flex-shrink:0;
+  }
+
+  .course:nth-child(1) .dot{ background:var(--copper); }
+  .course:nth-child(2) .dot{ background:var(--teal); }
+
+  a.course{
+    text-decoration:none;
+    transition:border-color 0.15s ease;
+  }
+
+  a.course:hover{
+    border-color:var(--teal);
+  }
+
+  a.course:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  .course-body{
+    flex:1;
+  }
+
+  .course-title{
+    font-weight:500;
+    font-size:1.02rem;
+  }
+
+  .course-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:3px;
+  }
+
+  /* Proyectos */
+  .projects{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .project{
+    border-left:2px solid var(--copper);
+    padding:2px 0 2px 20px;
+  }
+
+  .project:nth-child(2){
+    border-left-color:var(--teal);
+  }
+
+  .project-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.1rem;
+    margin-bottom:6px;
+  }
+
+  .project-desc{
+    color:var(--text);
+    font-size:0.96rem;
+    max-width:56ch;
+    margin:0 0 8px;
+  }
+
+  .project-stack{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+  }
+
+  .project-link{
+    display:inline-block;
+    margin-top:10px;
+    color:var(--teal);
+    text-decoration:none;
+    font-size:0.9rem;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.15s ease;
+  }
+
+  .project-link:hover{
+    border-bottom-color:var(--teal);
+  }
+
+  .project-link:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  /* Tareas */
+  .task-input-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+  }
+
+  #task-input{
+    flex:1;
+    background:var(--bg-soft);
+    border:1px solid var(--card-border);
+    color:var(--text);
+    padding:12px 14px;
+    border-radius:8px;
+    font-family:'Inter', sans-serif;
+    font-size:0.98rem;
+  }
+
+  #task-input:focus{
+    outline:2px solid var(--teal);
+    outline-offset:1px;
+  }
+
+  #add-task-btn{
+    background:var(--copper);
+    color:#1A1006;
+    border:none;
+    padding:0 20px;
+    border-radius:8px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:opacity 0.15s ease;
+  }
+
+  #add-task-btn:hover{ opacity:0.85; }
+  #add-task-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+
+  #task-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .task-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:8px;
+    padding:12px 14px;
+  }
+
+  .task-item input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    accent-color:var(--teal);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+
+  .task-item span{
+    flex:1;
+    font-size:0.98rem;
+    word-break:break-word;
+  }
+
+  .task-item.done span{
+    color:var(--muted);
+    text-decoration:line-through;
+  }
+
+  .delete-btn{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:1.2rem;
+    cursor:pointer;
+    line-height:1;
+    padding:4px 6px;
+    border-radius:6px;
+    transition:color 0.15s ease;
+  }
+
+  .delete-btn:hover{ color:#e0745a; }
+  .delete-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+
+  .empty-state{
+    color:var(--muted);
+    font-size:0.95rem;
+    padding:16px 0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  footer{
+    color:var(--muted);
+    font-size:0.85rem;
+    text-align:left;
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <header>
+    <h1>Daniel Valer</h1>
+    <div class="contact-links">
+      <a href="mailto:bvdany31@gmail.com">Email</a>
+      <span class="dot-sep">·</span>
+      <a href="https://github.com/dany901" target="_blank" rel="noopener noreferrer">Site</a>
+    </div>
+    <p class="subtitle">Convirtiendo ideas en aplicaciones y páginas web, una línea de código a la vez.</p>
+  </header>
+
+  <section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p class="about-text">Me dedico a intentar hacer apps y páginas web, aprendiendo por el camino y mejorando con cada proyecto. Estas son las dos formaciones que estoy siguiendo en paralelo:</p>
+    <div class="courses">
+      <div class="course">
+        <span class="dot"></span>
+        <div class="course-body">
+          <div class="course-title">Ciberseguridad</div>
+          <div class="course-tag">curso en curso</div>
+        </div>
+      </div>
+      <div class="course">
+        <span class="dot"></span>
+        <div class="course-body">
+          <div class="course-title">Diseño gráfico publicitario</div>
+          <div class="course-tag">curso en curso</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajos">
+    <h2>Mis trabajos</h2>
+    <div class="projects">
+      <div class="project">
+        <div class="project-name">Callbot IA</div>
+        <p class="project-desc">Recepcionista con inteligencia artificial de voz para pequeños negocios: contesta llamadas, confirma pedidos por WhatsApp y gestiona varios clientes desde un panel web[...]
+        <div class="project-stack">OpenAI Realtime API · Twilio · FastAPI · React</div>
+        <a class="project-link" href="https://github.com/dany901/the_app" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+      </div>
+      <div class="project">
+        <div class="project-name">Sistema de pedidos para restaurantes</div>
+        <p class="project-desc">Plataforma de pedidos y pagos en tiempo real: dashboard para el personal, gestión de menú por QR y avisos de pago en efectivo.</p>
+        <div class="project-stack">Fastify · Socket.IO · Prisma/PostgreSQL · Next.js</div>
+        <a class="project-link" href="https://github.com/dany901/SDP" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="tareas">
+    <h2>Tareas</h2>
+    <div class="task-input-row">
+      <input type="text" id="task-input" placeholder="Añade una tarea..." maxlength="200">
+      <button id="add-task-btn">Añadir</button>
+    </div>
+    <ul id="task-list"></ul>
+  </section>
+
+  <footer>
+    <p>Página personal de Daniel Valer.</p>
+  </footer>
+
+</main>
+
+<script>
+  const STORAGE_KEY = 'daniel-valer-tasks';
+
+  const input = document.getElementById('task-input');
+  const addBtn = document.getElementById('add-task-btn');
+  const list = document.getElementById('task-list');
+
+  function loadTasks(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  function saveTasks(tasks){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }
+
+  let tasks = loadTasks();
+
+  function render(){
+    list.innerHTML = '';
+
+    if(tasks.length === 0){
+      const empty = document.createElement('li');
+      empty.className = 'empty-state';
+      empty.textContent = 'Sin tareas todavía. Añade la primera arriba.';
+      list.appendChild(empty);
+      return;
+    }
+
+    tasks.forEach((task, index) => {
+      const li = document.createElement('li');
+      li.className = 'task-item' + (task.done ? ' done' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = task.done;
+      checkbox.setAttribute('aria-label', 'Marcar tarea como completada');
+      checkbox.addEventListener('change', () => {
+        tasks[index].done = checkbox.checked;
+        saveTasks(tasks);
+        render();
+      });
+
+      const span = document.createElement('span');
+      span.textContent = task.text;
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'delete-btn';
+      delBtn.innerHTML = '&times;';
+      delBtn.setAttribute('aria-label', 'Eliminar tarea');
+      delBtn.addEventListener('click', () => {
+        tasks.splice(index, 1);
+        saveTasks(tasks);
+        render();
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      li.appendChild(delBtn);
+      list.appendChild(li);
+    });
+  }
+
+  function addTask(){
+    const value = input.value.trim();
+    if(!value) return;
+    tasks.push({ text: value, done: false });
+    saveTasks(tasks);
+    input.value = '';
+    render();
+    input.focus();
+  }
+
+  addBtn.addEventListener('click', addTask);
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') addTask();
+  });
+
+  render();
+</script>
+
+</body>
+</html>
